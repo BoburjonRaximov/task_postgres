@@ -37,4 +37,60 @@ select b.name, c.name, count(bt.id) as tr_soni
     group by b.name , c.name
     order by tr_soni;
 
+"6"
+select b.name, count(bt.id where bt.types = 'plus') as plus, count(bt.id  where bt.types = 'minus')as minus,
+       sum(p.price where bt.types = 'plus') as plus, sum(p.price where bt.types = "minus") as minus
+    from branch_transaction as bt
+        inner join branches as b on b.id = bt.branch_id
+        inner join products as p on p.id = bt.product_id
+    group by b.name; ???????????????????????????????????????
+
+"7"
+select bp.created_at as kun, count(bp.product_id) as soni 
+    from branch_pr_transaction as bp
+     group by bp.created_at
+     order by  soni;
+
+"8"
+select p.name, count(bp.created_at) as kiritilgan, count(bp.deleted_at) as chiqarilgan
+    from branch_pr_transaction as bp
+       join products as p on p.id = bp.product_id
+    group by p.name;
+
+"9"
+select b.name, sum(p.price) as tr_sum
+    from branch_transaction as bt
+         inner join branches as b on b.id = bt.branch_id
+         inner join products as p on p.id = bt.product_id
+    group by b.name
+    order by tr_sum;
+
+"10"
+select u.name, sum(p.price) as u_sum
+    from branch_transaction as bt
+         inner join users as u on u.id = bt.users_id
+         inner join products as p on p.id = bt.product_id
+    group by u.name
+    order by u_sum;
+        
+"11"
+select u.name, count(p.id), sum(p.price) as u_sum
+    from branch_pr_transaction as bt
+         inner join users as u on u.id = bt.users_id
+         inner join products as p on p.id = bt.product_id
+    group by u.name
+    order by u_sum;
+
+"12"
+select u.name, count(bt.created_at) as kiritilgan, count(bt.deleted_at) as chiqarilgan
+    from branch_pr_transaction as bt
+         inner join users as u on u.id = bt.users_id
+         inner join products as p on p.id = bt.product_id
+    group by u.name;
+
+"13"
+    ??? 
+
+"14"
+    ???    
 
