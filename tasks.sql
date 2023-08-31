@@ -88,7 +88,7 @@ select u.name, count(bt.created_at) as kiritilgan, count(bt.deleted_at) as chiqa
          inner join products as p on p.id = bt.product_id
     group by u.name;
 
-"13"
+   "13"
     ??? 
 
 "14"
