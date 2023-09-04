@@ -38,12 +38,14 @@ select b.name, c.name, count(bt.id) as tr_soni
     order by tr_soni;
 
 "6"
-select b.name, count(bt.id where bt.types = 'plus') as plus, count(bt.id  where bt.types = 'minus')as minus,
-       sum(p.price where bt.types = 'plus') as plus, sum(p.price where bt.types = "minus") as minus
+select b.name, count(bt.id) filter(where bt.types = 'plus') as plus_count,
+       count(bt.id) filter(where bt.types = 'minus') as minus_count,
+       sum(p.price) filter(where bt.types = 'plus') as plus_sum,
+       sum(p.price) filter(where bt.types = 'minus') as minus_sum
     from branch_transaction as bt
         inner join branches as b on b.id = bt.branch_id
         inner join products as p on p.id = bt.product_id
-    group by b.name; ???????????????????????????????????????
+    group by b.name; 
 
 "7"
 select bp.created_at as kun, count(bp.product_id) as soni 
