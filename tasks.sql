@@ -91,8 +91,18 @@ select u.name, count(bt.created_at) as kiritilgan, count(bt.deleted_at) as chiqa
     group by u.name;
 
    "13"
-    ??? 
+   select b.name, avg(bt.quantity) filter(where bt.type = 'plus') as kiritilgan,
+         avg(bt.quantity) filter(where bt.type = 'minus') as chiqarilgan
+    from branch_pr_transaction as bt
+         join branches as b on b.id = bt.branch_id
+    group by b.name;
+ 
 
 "14"
-    ???    
+     select u.name, avg(p.price) filter(where bt.type = 'plus') as kiritilgan,
+         avg(p.price) filter(where bt.type = 'minus') as chiqarilgan
+    from branch_pr_transaction as bt
+         join users as u on u.id = bt.users_id
+         join products as p on p.id = bt.product_id
+    group by u.name;   
 
